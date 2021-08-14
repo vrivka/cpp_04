@@ -4,7 +4,7 @@ AMateria *MateriaSource::createMateria( std::string const &type ) {
 	for (int idx = 0; idx < 4; idx++)
 		if (this->sourceSlot[idx] && this->sourceSlot[idx]->getType() == type)
 			return this->sourceSlot[idx]->clone();
-	return 0;
+	return nullptr;
 }
 
 void MateriaSource::learnMateria( AMateria *materia ) {
@@ -16,31 +16,34 @@ void MateriaSource::learnMateria( AMateria *materia ) {
 }
 
 MateriaSource::MateriaSource() {
-	std::cout << "MateriaSource constructorS\n";
 	for (int idx = 0; idx < 4; idx++)
-		this->sourceSlot[idx] = NULL;
-	std::cout << "MateriaSource constructorF\n";
+		this->sourceSlot[idx] = nullptr;
 }
 
 MateriaSource::MateriaSource( MateriaSource const &other ) {
-	std::cout << "MateriaSource copy constructorS\n";
-	*this = other;
-	std::cout << "MateriaSource copy constructorF\n";
+	for (int idx = 0; idx < 4; idx++)
+		if (other.sourceSlot[idx])
+			this->sourceSlot[idx] = other.sourceSlot[idx]->clone();
+		else
+			this->sourceSlot[idx] = nullptr;
 }
 
 MateriaSource::~MateriaSource() {
-	std::cout << "MateriaSource destructorS\n";
 	for (int idx = 0; idx < 4; idx++)
 		if (this->sourceSlot[idx])
 			delete this->sourceSlot[idx];
-	std::cout << "MateriaSource destructorF\n";
 }
 
 MateriaSource &MateriaSource::operator=( MateriaSource const &other ) {
+	if (this == &other)
+		return *this;
 	for (int idx = 0; idx < 4; idx++)
-		if (this->sourceSlot[idx])
+		if (this->sourceSlot[idx]) {
 			delete this->sourceSlot[idx];
+			this->sourceSlot[idx] = nullptr;
+		}
 	for (int idx = 0; idx < 4; idx++)
-		this->sourceSlot[idx] = other.sourceSlot[idx];
+		if (other.sourceSlot[idx])
+			this->sourceSlot[idx] = other.sourceSlot[idx]->clone();
 	return *this;
 }

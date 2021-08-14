@@ -14,5 +14,4 @@ public:
 	Cure &operator=( Cure const & );
 };
 
-
 #endif

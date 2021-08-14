@@ -15,5 +15,4 @@ public:
 	Ice &operator=( Ice const & );
 };
 
-
 #endif

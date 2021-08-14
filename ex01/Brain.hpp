@@ -8,6 +8,7 @@ protected:
 	std::string ideas[100];
 public:
 	std::string getIdea( int ) const;
+	void setIdea( int, std::string const & );
 	Brain();
 	Brain( Brain const & );
 	~Brain();

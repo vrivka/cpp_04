@@ -23,5 +23,4 @@ public:
 	virtual ~Character();
 };
 
-
 #endif

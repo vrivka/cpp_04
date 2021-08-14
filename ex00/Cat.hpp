@@ -8,7 +8,7 @@ public:
 	virtual void makeSound() const;
 	Cat();
 	Cat( Cat const & );
-	~Cat();
+	virtual ~Cat();
 	Cat &operator=( Cat const & );
 };
 

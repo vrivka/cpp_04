@@ -4,61 +4,60 @@ std::string const &Character::getName() const {
 	return this->Name;
 }
 
-void Character::equip( AMateria *m ) {
-	std::cout << m->getType() << '\n';
+void Character::equip( AMateria *materia ) {
 	for(int idx = 0; idx < 4; idx++)
-		if (this->inventorySlot[idx] == NULL) {
-			this->inventorySlot[idx] = m;
+		if (this->inventorySlot[idx] == nullptr) {
+			this->inventorySlot[idx] = materia;
 			return ;
 		}
 }
 
 void Character::unequip( int idx ) {
-	if (idx < 0  || idx > 3)
+	if (idx < 0  || idx >= 4)
 		return ;
-	this->inventorySlot[idx] = NULL;
+	this->inventorySlot[idx] = nullptr;
 }
 
 void Character::use( int idx, ICharacter &target ) {
+	if (idx < 0 || idx >= 4)
+		return ;
 	this->inventorySlot[idx]->use(target);
 }
 
 Character::Character() : Name("nameless") {
-	std::cout << "Character constructorS\n";
 	for (int idx = 0; idx < 4; idx++)
-		this->inventorySlot[idx] = NULL;
-	std::cout << "Character constructorF\n";
+		this->inventorySlot[idx] = nullptr;
 }
 
 Character::Character( const std::string &name ) : Name(name) {
-	std::cout << "Character name constructorS\n";
 	for (int idx = 0; idx < 4; idx++)
-		this->inventorySlot[idx] = NULL;
-	std::cout << "Character name constructorF\n";
+		this->inventorySlot[idx] = nullptr;
 }
 
-Character::Character( Character const &other ) {
-	std::cout << "Character copy constructorS\n";
+Character::Character( Character const &other ) : Name(other.Name) {
 	for (int idx = 0; idx < 4; idx++)
-		if (this->inventorySlot[idx])
-			delete this->inventorySlot[idx];
-	*this = other;
-	std::cout << "Character copy constructorF\n";
+		if (other.inventorySlot[idx])
+			this->inventorySlot[idx] = other.inventorySlot[idx]->clone();
+		else
+			this->inventorySlot[idx] = nullptr;
 }
 
 Character::~Character() {
-	std::cout << "Character destructorS\n";
 	for (int idx = 0; idx < 4; idx++)
 		if (this->inventorySlot[idx])
 			delete this->inventorySlot[idx];
-	std::cout << "Character destructorF\n";
 }
 
 Character &Character::operator=( Character const &other ) {
+	if (this == &other)
+		return *this;
 	for (int idx = 0; idx < 4; idx++)
-		if (this->inventorySlot[idx])
+		if (this->inventorySlot[idx]) {
 			delete this->inventorySlot[idx];
+			this->inventorySlot[idx] = nullptr;
+		}
 	for (int idx = 0; idx < 4; idx++)
-		this->inventorySlot[idx] = other.inventorySlot[idx];
+		if (other.inventorySlot[idx])
+			this->inventorySlot[idx] = other.inventorySlot[idx]->clone();
 	return *this;
 }

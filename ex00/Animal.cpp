@@ -10,9 +10,9 @@ void Animal::makeSound() const {
 
 Animal::Animal() : type("Animal") {}
 
-Animal::Animal( Animal const &other ) {
-	*this = other;
-}
+Animal::Animal( std::string const &type ) : type(type) {}
+
+Animal::Animal( Animal const &other ) : type(other.type) {}
 
 Animal::~Animal() {}
 
@@ -20,4 +20,3 @@ Animal &Animal::operator=( Animal const &other ) {
 	this->type = other.type;
 	return *this;
 }
-

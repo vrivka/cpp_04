@@ -6,6 +6,7 @@
 class Animal {
 protected:
 	std::string type;
+	Animal( std::string const & );
 public:
 	std::string getType() const;
 	virtual void makeSound() const;

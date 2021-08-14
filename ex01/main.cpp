@@ -4,7 +4,7 @@
 #include "Cat.hpp"
 #include "Animal.hpp"
 
-#define ANIMALS_COUNT 6
+#define ANIMALS_COUNT 10
 
 int main() {
 	Animal *animals[ANIMALS_COUNT];
@@ -17,13 +17,26 @@ int main() {
 		animals[i] = new Cat();
 	for (i = 0; i < ANIMALS_COUNT; i++)
 		delete animals[i];
+
+	std::cout << std::endl;
+
 	Cat *cat = new Cat();
 	Dog *dog = new Dog();
+	Dog *ddog = new Dog();
 
-	cat->makeSound();
-	dog->makeSound();
-	std::cout << "42 idea of cat - " << cat->get42idea() << '\n';
-	std::cout << "42 idea of cat - " << dog->get42idea() << '\n';
+	*ddog = *dog;
+	std::cout << dog->getIdea(0) << '\n';
+	std::cout << ddog->getIdea(0) << '\n';
+	dog->setIdea(0, "play");
+	std::cout << dog->getIdea(0) << '\n';
+	std::cout << ddog->getIdea(0) << '\n';
+	*ddog = *dog;
+	std::cout << dog->getIdea(0) << '\n';
+	std::cout << ddog->getIdea(0) << '\n';
+	ddog->setIdea(0, "walk");
+	std::cout << dog->getIdea(0) << '\n';
+	std::cout << ddog->getIdea(0) << '\n';
 	delete cat;
 	delete dog;
+	delete ddog;
 }

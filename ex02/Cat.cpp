@@ -4,29 +4,35 @@ void Cat::makeSound() const {
 	std::cout << this->type << " says MEOW" << std::endl;
 }
 
-std::string Cat::get42idea() const {
-	return this->brain->getIdea(42);
+std::string Cat::getIdea( int index) const {
+	return this->brain->getIdea(index);
 }
 
-Cat::Cat() : Animal() {
+void Cat::setIdea( int index, std::string const &idea ) {
+	this->brain->setIdea(index, idea);
+}
+
+Cat::Cat() : Animal("Cat") {
 	this->brain = new Brain();
-	this->type = "Cat";
-	std::cout << "Cat on the field!\n";
+	std::cout << "Cat reveals\n";
 }
 
-Cat::Cat( Cat const &other ) {
-	*this = other;
-	std::cout << "Copy Cat on the field!\n";
+Cat::Cat( Cat const &other ) : Animal(other) {
+	this->brain = new Brain();
+	for (int i = 0; i < 100; i++)
+		this->brain->setIdea(i, other.brain->getIdea(i));
 }
 
 Cat::~Cat() {
 	delete this->brain;
-	std::cout << "Cat has left the building!\n";
+	std::cout << "Cat disappear\n";
 }
 
 Cat &Cat::operator=( Cat const &other ) {
-	delete this->brain;
-	this->brain = other.brain;
+	if (this == &other)
+		return *this;
+	for (int i = 0; i < 100; i++)
+		this->brain->setIdea(i, other.brain->getIdea(i));
 	this->type = other.type;
 	return *this;
 }

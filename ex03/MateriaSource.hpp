@@ -12,7 +12,7 @@ public:
 	virtual AMateria* createMateria( std::string const & );
 	MateriaSource();
 	MateriaSource( MateriaSource const & );
-	~MateriaSource();
+	virtual ~MateriaSource();
 	MateriaSource &operator=( MateriaSource const & );
 };
 

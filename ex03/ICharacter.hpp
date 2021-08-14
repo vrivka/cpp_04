@@ -15,5 +15,4 @@ public:
 	virtual ~ICharacter() { std::cout << "ICharacter destructor\n"; }
 };
 
-
 #endif

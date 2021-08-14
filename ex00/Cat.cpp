@@ -4,13 +4,9 @@ void Cat::makeSound() const {
 	std::cout << this->type << " says MOEW" << std::endl;
 }
 
-Cat::Cat() {
-	this->type = "Cat";
-}
+Cat::Cat() : Animal("Cat") {}
 
-Cat::Cat( Cat const &other ) {
-	*this = other;
-}
+Cat::Cat( Cat const &other ) : Animal(other) {}
 
 Cat::~Cat() {}
 
