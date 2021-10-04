@@ -1,26 +1,17 @@
 #include "Dog.hpp"
 
-void Dog::makeSound() const {
-	std::cout << this->type << " says WOOF" << std::endl;
-}
+void Dog::makeSound() const { std::cout << this->type << " says WOOF\n"; }
 
-std::string Dog::getIdea( int index) const {
-	return this->brain->getIdea(index);
-}
+std::string Dog::getIdea( int index) const { return this->brain->getIdea(index); }
 
-void Dog::setIdea( int index, std::string const &idea ) {
-	this->brain->setIdea(index, idea);
-}
+void Dog::setIdea( int index, std::string const &idea ) { this->brain->setIdea(index, idea); }
 
-Dog::Dog() : Animal("Dog") {
-	this->brain = new Brain();
-	std::cout << "Dog reveals\n";
-}
+Dog::Dog() : Animal("Dog"), brain(new Brain()) { std::cout << "Dog reveals\n"; }
 
-Dog::Dog( Dog const &other ) : Animal(other) {
-	this->brain = new Brain();
+Dog::Dog( Dog const &other ) : Animal(other), brain(new Brain()) {
 	for (int i = 0; i < 100; i++)
 		this->brain->setIdea(i, other.brain->getIdea(i));
+	std::cout << "Copy Dog reveals\n";
 }
 
 Dog::~Dog() {

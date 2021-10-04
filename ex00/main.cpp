@@ -7,20 +7,21 @@
 #include "WrongCat.hpp"
 
 int main() {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	Animal const *meta = new Animal();
+	Animal const *d = new Dog();
+	Animal const *c = new Cat();
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
+	std::cout << d->getType() << " " << std::endl;
+	std::cout << c->getType() << " " << std::endl;
+	c->makeSound();
+	d->makeSound();
 	meta->makeSound();
 	delete meta;
-	delete i;
-	delete j;
+	delete c;
+	delete d;
 
-	const WrongAnimal *wc = new WrongCat();
+	WrongAnimal const *wc = new WrongCat();
+
 	wc->makeSound();
 	delete wc;
 }

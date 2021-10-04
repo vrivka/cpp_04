@@ -1,8 +1,6 @@
 #include "Character.hpp"
 
-std::string const &Character::getName() const {
-	return this->Name;
-}
+std::string const &Character::getName() const { return this->Name; }
 
 void Character::equip( AMateria *materia ) {
 	for(int idx = 0; idx < 4; idx++)

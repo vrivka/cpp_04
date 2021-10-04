@@ -1,4 +1,4 @@
-NAME = testAbstact
+NAME = testAbstract
 
 SRCS =	main.cpp \
         Animal.cpp \

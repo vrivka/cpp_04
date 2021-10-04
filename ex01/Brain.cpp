@@ -17,14 +17,16 @@ void Brain::setIdea( int index, std::string const &newIdea ) {
 Brain::Brain() {
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = i % 2 ? "eat" : "sleep";
+	std::cout << "Brain confirmed\n";
 }
 
 Brain::Brain( Brain const &other ) {
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = other.ideas[i];
+	std::cout << "Copy Brain confirmed\n";
 }
 
-Brain::~Brain() {}
+Brain::~Brain()  { std::cout << "Brain deleted\n"; }
 
 Brain &Brain::operator=( Brain const &other ) {
 	if (this == &other)

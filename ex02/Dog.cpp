@@ -21,6 +21,7 @@ Dog::Dog( Dog const &other ) : Animal(other) {
 	this->brain = new Brain();
 	for (int i = 0; i < 100; i++)
 		this->brain->setIdea(i, other.brain->getIdea(i));
+	std::cout << "Copy Dog reveals\n";
 }
 
 Dog::~Dog() {

@@ -1,8 +1,6 @@
 #include "AMateria.hpp"
 
-std::string const &AMateria::getType() const {
-	return this->Type;
-}
+std::string const &AMateria::getType() const { return this->Type; }
 
 void AMateria::use( ICharacter & ) {}
 

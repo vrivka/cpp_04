@@ -1,22 +1,20 @@
 #include "Animal.hpp"
 
-std::string Animal::getType() const {
-	return this->type;
-}
+std::string Animal::getType() const { return this->type; }
 
-void Animal::makeSound() const {
-	std::cout << "Silence..." << std::endl;
-}
+void Animal::makeSound() const { std::cout << "Silence...\n"; }
 
-Animal::Animal() : type("Animal") {}
+Animal::Animal() : type("Animal") { std::cout << "Animal reveals\n"; }
 
-Animal::Animal( std::string const &type ) : type(type) {}
+Animal::Animal( std::string const &type ) : type(type) { std::cout << "Animal reveals\n"; }
 
-Animal::Animal( Animal const &other ) : type(other.type) {}
+Animal::Animal( Animal const &other ) : type(other.type) { std::cout << "Copy Animal reveals\n"; }
 
-Animal::~Animal() {}
+Animal::~Animal() { std::cout << "Animal disappear\n"; }
 
 Animal &Animal::operator=( Animal const &other ) {
+	if (this == &other)
+		return *this;
 	this->type = other.type;
 	return *this;
 }
